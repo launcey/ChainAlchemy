@@ -1,0 +1,39 @@
+# main.py
+
+from scripts.block_exploration import get_block_details
+from scripts.transaction_analysis import get_transaction_details, analyze_transaction_data
+from scripts.smart_contract_interaction import call_contract_function
+from scripts.visualization import plot_transaction_volume
+from scripts.alerts import trigger_alert
+from utils.data_utils import save_data, load_json
+
+def main():
+    # Example: Get block details
+    block_details = get_block_details(12345678)
+    print(block_details)
+    
+    # Example: Get transaction details
+    tx_details = get_transaction_details('0xTransactionHash')
+    print(tx_details)
+    
+    # Example: Analyze transaction data
+    analysis_df = analyze_transaction_data([tx_details])
+    print(analysis_df)
+    
+    # Example: Call smart contract function
+    contract_address = '0xContractAddress'
+    abi = [...]  # Contract ABI
+    result = call_contract_function(contract_address, abi, 'functionName', 'arg1', 'arg2')
+    print(result)
+    
+    # Example: Plot transaction volume
+    transaction_data = pd.DataFrame({'timestamp': pd.date_range(start='1/1/2024', periods=10, freq='D'), 'value': [100, 200, 150, 300, 250, 400, 350, 450, 500, 550]})
+    plot_transaction_volume(transaction_data)
+    
+    # Example: Trigger alert
+    event_details = {'event': 'Large transaction', 'details': 'Transaction hash: 0xTransactionHash'}
+    trigger_alert(event_details)
+    
+    # Example: Save processed data
+    save_data(block_details, 'data/block_details.json')
+    save_data(analysis_df.to_dict(orient='records'), '
